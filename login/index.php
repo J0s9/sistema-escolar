@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="<?= APP_URL?>/public/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= APP_URL?>/public/dist/css/adminlte.min.css">
+    <!-- Sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="hold-transition login-page">
@@ -28,7 +30,7 @@
             <div class="card-body">
                 <p class="login-box-msg">Ingresar al sistema</p>
 
-                <form action="controller_login.php" method="post">
+                <form action="controller_login.php" method="post" class="form-container">
                     <div class="input-group mb-3">
                         <input type="email" name="email" class="form-control" placeholder="Email">
                         <div class="input-group-append">
@@ -50,6 +52,24 @@
                     </div>
                 </form>
             </div>
+            <?php
+            session_start();
+            if(isset($_SESSION['mensaje'])){
+                $mensaje = $_SESSION['mensaje'];
+                ?>
+                <script>
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "<?=$mensaje;?>",
+                        showConfirmButton: false,
+                        timer: 4000
+                    });
+                </script>
+            <?php
+                session_destroy();
+            }
+            ?>
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
@@ -57,11 +77,11 @@
     <!-- /.login-box -->
 
     <!-- jQuery -->
-    <script src="<?php APP_URL?>/public/plugins/jquery/jquery.min.js"></script>
+    <script src="<?= APP_URL?>/public/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="<?php APP_URL?>/public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= APP_URL?>/public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="<?php APP_URL?>/public/dist/js/adminlte.min.js"></script>
+    <script src="<?= APP_URL?>/public/dist/js/adminlte.min.js"></script>
 </body>
 
 </html>
