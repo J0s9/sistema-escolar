@@ -23,6 +23,7 @@ if ( ($contador>0) && (password_verify($password,$pass_form))){
     header('Location:'.APP_URL."/admin");
     $_SESSION['mensaje'] = 'Bienvenido';
     $_SESSION['icono'] = 'success';
+    $_SESSION['email'] = $email;
     }else{
     echo "los datos son incorrectos";
     session_start();
